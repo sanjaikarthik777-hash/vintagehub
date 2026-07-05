@@ -27,6 +27,7 @@ const Login = () => {
                 navigate(-1); // Back to previous
             }
         } catch (err) {
+            console.error("Login request failed", err);
             setError("Invalid credentials");
         } finally {
             setLoading(false);

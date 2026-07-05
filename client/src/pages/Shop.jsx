@@ -46,7 +46,6 @@ const Shop = () => {
 
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [total, setTotal] = useState(0);
     const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
 
     // Filter State
@@ -81,7 +80,6 @@ const Shop = () => {
                 }
                 
                 setProducts(data);
-                setTotal(res.data.total);
             } catch (error) {
                 console.error("Failed to fetch products", error);
             } finally {

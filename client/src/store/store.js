@@ -27,7 +27,7 @@ export const useWishlistStore = create(
 // Recently Viewed Store
 export const useRecentlyViewedStore = create(
     persist(
-        (set, get) => ({
+        (set) => ({
             items: [],
             addItem: (product) => set((state) => {
                 const filtered = state.items.filter(p => p.id !== product.id);

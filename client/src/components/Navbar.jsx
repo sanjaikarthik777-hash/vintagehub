@@ -50,13 +50,20 @@ const Navbar = () => {
     }, []);
 
     useEffect(() => {
-        if (!searchQuery.trim()) { setSearchResults([]); return; }
+        if (!searchQuery.trim()) {
+            const timer = setTimeout(() => {
+                setSearchResults([]);
+            }, 0);
+            return () => clearTimeout(timer);
+        }
         clearTimeout(searchDebounceRef.current);
         searchDebounceRef.current = setTimeout(async () => {
             try {
                 const res = await getProducts({ search: searchQuery, limit: 6 });
                 setSearchResults(res.data.data || []);
-            } catch (_) { }
+            } catch {
+                /* ignore search query error */
+            }
         }, 300);
     }, [searchQuery]);
 

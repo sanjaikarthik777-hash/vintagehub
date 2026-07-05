@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useWishlistStore, useCartStore } from '../store/store';
 
 const Wishlist = () => {
-    const { wishlist, removeFromWishlist, toggleWishlist } = useWishlistStore();
+    const { wishlist, removeFromWishlist } = useWishlistStore();
     const { addToCart } = useCartStore();
 
     const handleMoveToCart = (product) => {

@@ -12,7 +12,9 @@ api.interceptors.request.use((config) => {
             if (parsed.state && parsed.state.token) {
                 config.headers.Authorization = `Bearer ${parsed.state.token}`;
             }
-        } catch(e) {}
+        } catch {
+            /* ignore token parsing error */
+        }
     }
     return config;
 });

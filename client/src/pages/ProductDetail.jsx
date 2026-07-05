@@ -25,17 +25,22 @@ const ProductDetail = () => {
     const imageRef = useRef(null);
 
     useEffect(() => {
-        setLoading(true);
-        setActiveImage(0);
-        setSelectedSize(null);
+        const timer = setTimeout(() => {
+            setLoading(true);
+            setActiveImage(0);
+            setSelectedSize(null);
+        }, 0);
         window.scrollTo(0, 0);
         getProductById(id).then(res => {
             setProduct(res.data.product);
             setSimilar(res.data.similar || []);
             addToRecent(res.data.product);
             setSelectedColor(res.data.product.colors[0]);
-        }).catch(console.error).finally(() => setLoading(false));
-    }, [id]);
+        }).catch(console.error).finally(() => {
+            setTimeout(() => setLoading(false), 0);
+        });
+        return () => clearTimeout(timer);
+    }, [id, addToRecent]);
 
     const handleImageMouseMove = (e) => {
         if (!imageRef.current) return;
